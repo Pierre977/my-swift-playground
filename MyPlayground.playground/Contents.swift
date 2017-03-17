@@ -45,3 +45,43 @@ while numberOfSteps > 0 {
 }
 
 print(array2)
+
+// **********
+// * String Revert with for loop
+// **********
+
+let oneString = "This is a String"
+var revertString = ""
+
+for index in stride(from: oneString.characters.count - 1, through: 0, by: -1) {
+    let strIndex = oneString.index(oneString.startIndex, offsetBy: index)
+    revertString.append(oneString[strIndex])
+}
+
+print(revertString)
+
+// **********
+// * String Revert with while loop
+// **********
+
+let string = "Another string to revert"
+var reverseString = ""
+
+var offset = 1
+repeat {
+    let indexer = string.index(string.endIndex, offsetBy: offset * -1)
+    reverseString.append(string[indexer])
+    offset += 1
+} while offset <= string.characters.count
+
+print(reverseString)
+
+// **********
+// * String Revert with one line
+// **********
+
+
+let item = "String which will be revert"
+let revertStr = String(item.characters.reversed())
+
+
