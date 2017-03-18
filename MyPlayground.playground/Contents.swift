@@ -80,8 +80,17 @@ print(reverseString)
 // * String Revert with one line
 // **********
 
-
 let item = "String which will be revert"
 let revertStr = String(item.characters.reversed())
 
+// **********
+// * String Revert with for loop
+// **********
 
+let myString = "This string will be revert"
+var myRevert = ""
+for character in myString.characters {
+    myRevert.insert(character, at: myRevert.startIndex)
+}
+
+print(myRevert)
