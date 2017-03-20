@@ -94,3 +94,17 @@ for character in myString.characters {
 }
 
 print(myRevert)
+
+// **********
+// * String Revert with while loop
+// **********
+
+let myOtherString = "Lets revert this string"
+var currentIndex = myOtherString.startIndex
+var myOtherRevertString = ""
+while currentIndex != myOtherString.endIndex {
+    myOtherRevertString.insert(myOtherString[currentIndex], at: myOtherRevertString.startIndex)
+    currentIndex = myOtherString.index(after: currentIndex)
+}
+
+print(myOtherRevertString)
