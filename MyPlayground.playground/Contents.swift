@@ -2,21 +2,18 @@
 
 import UIKit
 
-var str = "Hello, playground"
-
 // **********
-// * Bubble sort with for loop
+// * Bubble sort
+// * https://hu.wikipedia.org/wiki/Bubor%C3%A9krendez%C3%A9s
 // **********
-
 var anArray = [7,5,4,3,1]
 
-for _ in 0..<anArray.count {
-    for index in 0..<anArray.count - 1 {
-        let item = anArray[index]
-        let nextItem = anArray[index + 1]
-        if (item > nextItem) {
-            anArray[index] = nextItem
-            anArray[index + 1] = item
+for i in stride(from: anArray.count, to: 1, by: -1) {
+    for j in stride(from: 0, to: i-1, by: 1) {
+        if anArray[j] > anArray[j+1] {
+            var temp = anArray[j]
+            anArray[j] = anArray[j+1]
+            anArray[j+1] = temp
         }
     }
 }
@@ -24,87 +21,23 @@ for _ in 0..<anArray.count {
 print(anArray)
 
 // **********
-// * Bubble sort with while loop
+// * String revert inline
 // **********
 
-var array2 = [10, 3, 5, 4]
-var numberOfSteps = array2.count
+var myString = "abcefghij"
 
-while numberOfSteps > 0 {
-    numberOfSteps -= 1
-    var index = 0;
-    while index < array2.count - 1 {
-        let item = array2[index]
-        let nextItem = array2[index + 1]
-        if item > nextItem {
-            array2[index] = nextItem
-            array2[index + 1] = item
-        }
-        index += 1
-    }
+let counter = myString.characters.count / 2
+var index = myString.startIndex
+var index2 = myString.index(myString.endIndex, offsetBy: -1)
+var indexTo = myString.index(myString.startIndex, offsetBy: counter)
+
+while index != indexTo {
+    let temp = myString[index]
+    let temp2 = myString[index2]
+    myString.replaceSubrange(index...index, with: String(temp2))
+    myString.replaceSubrange(index2...index2, with: String(temp))
+    index = myString.index(after: index)
+    index2 = myString.index(before: index2)
 }
 
-print(array2)
-
-// **********
-// * String Revert with for loop
-// **********
-
-let oneString = "This is a String"
-var revertString = ""
-
-for index in stride(from: oneString.characters.count - 1, through: 0, by: -1) {
-    let strIndex = oneString.index(oneString.startIndex, offsetBy: index)
-    revertString.append(oneString[strIndex])
-}
-
-print(revertString)
-
-// **********
-// * String Revert with while loop
-// **********
-
-let string = "Another string to revert"
-var reverseString = ""
-
-var offset = 1
-repeat {
-    let indexer = string.index(string.endIndex, offsetBy: offset * -1)
-    reverseString.append(string[indexer])
-    offset += 1
-} while offset <= string.characters.count
-
-print(reverseString)
-
-// **********
-// * String Revert with one line
-// **********
-
-let item = "String which will be revert"
-let revertStr = String(item.characters.reversed())
-
-// **********
-// * String Revert with for loop
-// **********
-
-let myString = "This string will be revert"
-var myRevert = ""
-for character in myString.characters {
-    myRevert.insert(character, at: myRevert.startIndex)
-}
-
-print(myRevert)
-
-// **********
-// * String Revert with while loop
-// **********
-
-let myOtherString = "Lets revert this string"
-var currentIndex = myOtherString.startIndex
-var myOtherRevertString = ""
-while currentIndex != myOtherString.endIndex {
-    myOtherRevertString.insert(myOtherString[currentIndex], at: myOtherRevertString.startIndex)
-    currentIndex = myOtherString.index(after: currentIndex)
-}
-
-print(myOtherRevertString)
+print(myString)
